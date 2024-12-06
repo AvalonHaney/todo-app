@@ -1,0 +1,34 @@
+<h1 mat-dialog-title>{{data ? 'Edit Task' : 'Add Task'}}</h1>
+
+<div mat-dialog-content>
+  <form [formGroup]="taskForm">
+    <mat-form-field>
+      <mat-label>Task Title</mat-label>
+      <input matInput formControlName="title" placeholder="Task Title" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <input matInput formControlName="description" placeholder="Description" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Deadline</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="deadline" placeholder="MM/DD/YYYY" />
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-radio-group formControlName="priority">
+      <mat-radio-button value="low">Low</mat-radio-button>
+      <mat-radio-button value="medium">Medium</mat-radio-button>
+      <mat-radio-button value="high">High</mat-radio-button>
+    </mat-radio-group>
+
+    <mat-checkbox formControlName="isComplete">Is Complete</mat-checkbox>
+  </form>
+</div>
+
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button (click)="onSave()" [disabled]="taskForm.invalid">Save</button>
+</mat-dialog-actions>
